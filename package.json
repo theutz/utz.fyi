@@ -1,0 +1,26 @@
+{
+  "name": "utz.fyi",
+  "version": "0.0.0",
+  "description": "My personal website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theutz/utz.fyi.git"
+  },
+  "author": "Michael Utz <michael@utz.fyi>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theutz/utz.fyi/issues"
+  },
+  "homepage": "https://github.com/theutz/utz.fyi#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-conventional": "^7.1.2",
+    "husky": "^1.2.0",
+    "prettier": "^1.15.2",
+    "pretty-quick": "^1.8.0"
+  }
+}
