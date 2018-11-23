@@ -10,6 +10,7 @@ import {
 import Page from '../layouts/main'
 import Theme from '../components/Theme'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 export default () => (
   <Page>
@@ -25,12 +26,9 @@ export default () => (
                 </div>
               ))}
             </div>
-            <h1 className="title">
-              <Link href="/">
-                <a>Michael Utz, FYI</a>
-              </Link>
-            </h1>
+            <h1 className="title">Michael Utz, FYI</h1>
           </div>
+          <Footer />
           <style jsx>{`
             .container {
               width: 100vw;

@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 
 import Theme, { Provider } from '../components/Theme'
 
@@ -56,10 +58,19 @@ const Page = ({ children }) => (
             breakpoints,
             font: { size, weight, lineHeight },
           },
+          themeName,
+          toggleTheme,
         }) => {
           return (
-            <>
-              <div className="container">{children}</div>
+            <div className="container">
+              {children}
+              <div className="theme-toggler">
+                <button onClick={toggleTheme}>
+                  <FontAwesomeIcon
+                    icon={themeName === 'dark' ? faSun : faMoon}
+                  />
+                </button>
+              </div>
               <style jsx global>{`
                 html {
                   font-size: ${size(4)};
@@ -137,8 +148,21 @@ const Page = ({ children }) => (
                 .container {
                   color: ${color.foreground};
                 }
+
+                .theme-toggler {
+                  position: fixed;
+                  bottom: 0.5em;
+                  right: 0.5em;
+                }
+
+                .theme-toggler button {
+                  background: ${color.foreground};
+                  color: ${color.background};
+                  border-radius: 50%;
+                  padding: 0.5em;
+                }
               `}</style>
-            </>
+            </div>
           )
         }}
       </Theme>

@@ -4,6 +4,7 @@ import themes from './themes'
 const ThemeContext = React.createContext({
   theme: themes.dark,
   toggleTheme: () => {},
+  themeName: 'dark',
 })
 
 export class Provider extends React.Component {
@@ -13,9 +14,10 @@ export class Provider extends React.Component {
     super(props)
 
     this.toggleTheme = () => {
-      this.setState((state) => {
+      this.setState(({ themeName }) => {
         return {
-          theme: state.theme === themes.dark ? themes.light : themes.dark,
+          theme: themeName === 'dark' ? themes.light : themes.dark,
+          themeName: themeName === 'dark' ? 'light' : 'dark',
         }
       })
     }
@@ -23,6 +25,7 @@ export class Provider extends React.Component {
     this.state = {
       theme: themes.dark,
       toggleTheme: this.toggleTheme,
+      themeName: 'dark',
     }
   }
 

@@ -16,11 +16,9 @@ const Header = () => (
         <div className="title-bar">
           <div className="logos">
             {[faCode, faCoffee, faTerminal, faUndo].map((icn) => (
-              <Link href="/">
-                <a className="logo">
-                  <FontAwesomeIcon icon={icn} />
-                </a>
-              </Link>
+              <span className="logo">
+                <FontAwesomeIcon icon={icn} />
+              </span>
             ))}
           </div>
           <Link href="/">
