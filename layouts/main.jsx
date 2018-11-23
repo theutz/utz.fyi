@@ -151,10 +151,11 @@ const Page = ({ children }) => (
 
                 .theme-toggler {
                   position: fixed;
-                  bottom: 0.5em;
-                  right: 0.5em;
-                  left: 0.5em;
+                  bottom: 0;
+                  right: 0;
+                  left: 0;
                   display: flex;
+                  justify-content: center;
                 }
 
                 .theme-toggler button {
@@ -162,6 +163,7 @@ const Page = ({ children }) => (
                   color: ${color.background};
                   border-radius: 50%;
                   padding: 0.5em;
+                  margin-bottom: 1em;
                 }
               `}</style>
             </div>
