@@ -38,30 +38,77 @@ export default ({ children }) => (
       <meta name="msapplication-TileColor" content="#2b5797" />
       <meta name="msapplication-config" content="/static/browserconfig.xml" />
       <meta name="theme-color" content="#ffffff" />
+      <title>FYI: Michael Utz</title>
     </Head>
     <Provider>
       <Theme>
-        {({ theme }) => (
-          <>
-            <div className="container">{children}</div>
-            <style jsx global>{`
-              body {
-                background: ${theme.background};
-                color: ${theme.foreground};
-                font-family: 'Rubik', sans-serif;
-              }
+        {({ theme }) => {
+          return (
+            <>
+              <div className="container">{children}</div>
+              <style jsx global>{`
+                html {
+                  font-size: ${theme.font.size(4)};
+                }
 
-              a {
-                color: ${theme.primary};
-              }
-            `}</style>
-            <style jsx="true">{`
-              .container {
-                color: ${theme.foreground};
-              }
-            `}</style>
-          </>
-        )}
+                body {
+                  font-weight: ${theme.font.weight};
+                  line-height: ${theme.font.lineHeight[0]};
+                  background: ${theme.background};
+                  color: ${theme.foreground};
+                  font-family: 'Rubik', sans-serif;
+                }
+
+                p {
+                  margin-bottom: 1.3em;
+                }
+
+                h1,
+                h2,
+                h3,
+                h4 {
+                  margin: ${theme.spacer(1.414)} 0 ${theme.spacer(0.5)};
+                  line-height: ${theme.font.lineHeight[1]};
+                }
+
+                h1 {
+                  margin-top: 0;
+                  font-size: ${theme.font.size(0)};
+                }
+
+                h2 {
+                  font-size: ${theme.font.size(1)};
+                }
+
+                h3 {
+                  font-size: ${theme.font.size(2)};
+                }
+
+                h4 {
+                  font-size: ${theme.font.size(3)};
+                }
+
+                small {
+                  font-size: ${theme.font.size(5)};
+                }
+
+                a {
+                  text-decoration: none;
+                  color: ${theme.primary};
+                }
+
+                a:hover {
+                  text-decoration: underline;
+                }
+              `}</style>
+              <style>{`
+                .container {
+                  color: ${theme.foreground};
+                }
+              `}</style>
+            </>
+          )
+        }}
       </Theme>
     </Provider>
   </>

@@ -1,5 +1,5 @@
 import React from 'react'
-import themes from './colors'
+import themes from './themes'
 
 const ThemeContext = React.createContext({
   theme: themes.dark,
@@ -11,9 +11,11 @@ export class Provider extends React.Component {
     super(props)
 
     this.toggleTheme = () => {
-      this.setState((state) => ({
-        theme: state.theme === themes.dark ? themes.light : themes.dark,
-      }))
+      this.setState((state) => {
+        return {
+          theme: state.theme === themes.dark ? themes.light : themes.dark,
+        }
+      })
     }
 
     this.state = {
