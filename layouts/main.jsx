@@ -153,6 +153,8 @@ const Page = ({ children }) => (
                   position: fixed;
                   bottom: 0.5em;
                   right: 0.5em;
+                  left: 0.5em;
+                  display: flex;
                 }
 
                 .theme-toggler button {
