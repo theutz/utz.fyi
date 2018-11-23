@@ -115,21 +115,21 @@ const Page = ({ children }) => (
                   text-decoration: underline;
                 }
 
-                @media (min-width: ${breakpoints[2]}px) {
+                @media (min-width: ${breakpoints[1]}px) {
                   h1 {
-                    font-size: ${size(0, { breakpoint: 2 })};
+                    font-size: ${size(0, { scale: 1 })};
                   }
                   h2 {
-                    font-size: ${size(1, { breakpoint: 2 })};
+                    font-size: ${size(1, { scale: 1 })};
                   }
                   h3 {
-                    font-size: ${size(2, { breakpoint: 2 })};
+                    font-size: ${size(2, { scale: 1 })};
                   }
                   h4 {
-                    font-size: ${size(3, { breakpoint: 2 })};
+                    font-size: ${size(3, { scale: 1 })};
                   }
                   small {
-                    font-size: ${size(5, { breakpoint: 2 })};
+                    font-size: ${size(5, { scale: 1 })};
                   }
                 }
               `}</style>
