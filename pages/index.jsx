@@ -9,12 +9,14 @@ import {
 
 import Page from '../layouts/main'
 import Theme from '../components/Theme'
+import Header from '../components/Header'
 
 export default () => (
   <Page>
     <Theme>
       {({ theme: { color, font, spacer, breakpoints } }) => (
         <React.Fragment>
+          <Header />
           <div className="container">
             <div className="logos">
               {[faCode, faCoffee, faTerminal, faUndo].map((icon) => (
@@ -46,6 +48,11 @@ export default () => (
               animation-duration: 1s;
               animation-timing-function: ease-in;
               animation-name: fadeIn;
+            }
+
+            .title,
+            .title a {
+              color: ${color.info};
             }
 
             .logos {
