@@ -1,18 +1,16 @@
 import React from 'react'
-import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faCode,
-  faCoffee,
-  faUndo,
-  faTerminal,
-} from '@fortawesome/free-solid-svg-icons'
-import classNames from 'classnames'
 
+import styled, { keyframes } from 'styled-components'
+
+import SessionStorage from '../helpers/SessionStorage'
+import { colors, space, text } from '../theme'
 import Page from '../layouts/main'
-import Theme from '../components/Theme'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Logos, {
+  Logo as BaseLogo,
+  Container as BaseLogoContainer,
+} from '../components/Logos'
 
 class Index extends React.Component {
   get skipAnimation() {
@@ -35,121 +33,77 @@ class Index extends React.Component {
   }
 
   componentDidMount() {
-    const skipAnimation = this.skipAnimation
-
-    this.setState({ skipAnimation }, () => {
-      this.skipAnimation = true
+    const storage = new SessionStorage()
+    this.setState({ skipAnimation: storage.skipAnimation }, () => {
+      storage.skipAnimation = true
     })
   }
 
   render() {
+    const { skipAnimation } = this.state
+
     return (
-      this.state.skipAnimation !== null && (
+      skipAnimation !== null && (
         <Page>
-          <Theme>
-            {({ theme: { color, font, spacer, breakpoints } }) => (
-              <React.Fragment>
-                <Header />
-                <div className="container">
-                  <div className="logos">
-                    {[faCode, faCoffee, faTerminal, faUndo].map((icon) => (
-                      <div
-                        className={classNames('logo', {
-                          animated: !this.state.skipAnimation,
-                        })}
-                      >
-                        <FontAwesomeIcon key={icon} icon={icon} />
-                      </div>
-                    ))}
-                  </div>
-                  <h1
-                    className={classNames('title', {
-                      animated: !this.state.skipAnimation,
-                    })}
-                  >
-                    Michael Utz, FYI
-                  </h1>
-                </div>
-                <Footer />
-                <style jsx>{`
-                  .container {
-                    width: 100vw;
-                    height: 100vh;
-                    display: flex;
-                    flex-flow: column nowrap;
-                    justify-content: center;
-                    align-items: center;
-                  }
-
-                  .title {
-                    text-align: center;
-                    animation-fill-mode: both;
-                    animation-delay: 5s;
-                    animation-duration: 1s;
-                    animation-timing-function: ease-in;
-                  }
-
-                  .title,
-                  .title a {
-                    color: ${color.info};
-                  }
-
-                  .logos {
-                    width: 80vw;
-                    max-width: 600px;
-                    color: ${color.foreground};
-                    font-size: 2em;
-                    margin-bottom: ${spacer(1)};
-                    display: flex;
-                    justify-content: space-around;
-                  }
-
-                  @media screen and (min-width: ${breakpoints[1]}px) {
-                    .logos {
-                      font-size: 3em;
-                    }
-                  }
-
-                  .animated {
-                    animation-name: fadeIn;
-                  }
-
-                  .logo {
-                    animation-timing-function: ease-in-out;
-                    animation-duration: 1s;
-                    animation-fill-mode: both;
-                  }
-
-                  .logo:nth-child(1) {
-                    animation-delay: 1s;
-                  }
-                  .logo:nth-child(2) {
-                    animation-delay: 2s;
-                  }
-                  .logo:nth-child(3) {
-                    animation-delay: 3s;
-                  }
-                  .logo:nth-child(4) {
-                    animation-delay: 4s;
-                  }
-
-                  @keyframes fadeIn {
-                    0% {
-                      opacity: 0;
-                    }
-                    100% {
-                      opacity: 1;
-                    }
-                  }
-                `}</style>
-              </React.Fragment>
-            )}
-          </Theme>
+          <Header />
+          <Container>
+            <Logos
+              as={LogoContainer}
+              with={({ index, ...props }) => {
+                return <Logo {...props} delay={index + 1} animation={fadeIn} />
+              }}
+            />
+            <Title>Michael Utz, FYI</Title>
+          </Container>
+          <Footer />
         </Page>
       )
     )
   }
 }
+
+const LogoContainer = styled(BaseLogoContainer)`
+  width: 80vw;
+  justify-content: space-around;
+  font-size: ${text.size(0)};
+  margin-bottom: ${space(1)};
+`
+
+const Logo = styled(BaseLogo)`
+  color: ${colors.foreground};
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: ${({ delay }) => delay}s;
+  animation-name: ${({ animation }) => animation};
+`
+
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+`
+
+const Title = styled.h1`
+  text-align: center;
+  animation-fill-mode: both;
+  animation-delay: 5s;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  color: ${colors.primary};
+`
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
 
 Index.displayName = 'HomePage'
 

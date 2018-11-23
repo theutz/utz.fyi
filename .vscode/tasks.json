@@ -32,6 +32,12 @@
         "isDefault": true
       },
       "label": "Test"
+    },
+    {
+      "type": "npm",
+      "script": "lint",
+      "problemMatcher": [],
+      "label": "Lint"
     }
   ]
 }

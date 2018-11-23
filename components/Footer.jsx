@@ -1,14 +1,9 @@
-import Theme from './Theme'
+import React from 'react'
 
 const Footer = () => (
-  <Theme>
-    {({ theme, toggleTheme }) => (
-      <div className="container">
-        <div className="right" />
-        <style jsx>{``}</style>
-      </div>
-    )}
-  </Theme>
+  <div className="container">
+    <div className="right" />
+  </div>
 )
 
 export default Footer
