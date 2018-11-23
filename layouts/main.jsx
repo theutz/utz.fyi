@@ -1,8 +1,14 @@
 import Head from 'next/head'
+import '../styles/normalize.css'
+import Theme, { Provider } from '../components/Theme'
 
 export default ({ children }) => (
   <>
     <Head>
+      <link
+        href="https://fonts.googleapis.com/css?family=Rubik:400,700"
+        rel="stylesheet"
+      />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
@@ -33,6 +39,30 @@ export default ({ children }) => (
       <meta name="msapplication-config" content="/static/browserconfig.xml" />
       <meta name="theme-color" content="#ffffff" />
     </Head>
-    {children}
+    <Provider>
+      <Theme>
+        {({ theme }) => (
+          <>
+            <div className="container">{children}</div>
+            <style jsx global>{`
+              body {
+                background: ${theme.background};
+                color: ${theme.foreground};
+                font-family: 'Rubik', sans-serif;
+              }
+
+              a {
+                color: ${theme.primary};
+              }
+            `}</style>
+            <style jsx="true">{`
+              .container {
+                color: ${theme.foreground};
+              }
+            `}</style>
+          </>
+        )}
+      </Theme>
+    </Provider>
   </>
 )
