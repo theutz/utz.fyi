@@ -49,20 +49,27 @@ const Page = ({ children }) => (
     </Head>
     <Provider>
       <Theme>
-        {({ theme }) => {
+        {({
+          theme: {
+            color,
+            spacer,
+            breakpoints,
+            font: { size, weight, lineHeight },
+          },
+        }) => {
           return (
             <>
               <div className="container">{children}</div>
               <style jsx global>{`
                 html {
-                  font-size: ${theme.font.size(4)};
+                  font-size: ${size(4)};
                 }
 
                 body {
-                  font-weight: ${theme.font.weight};
-                  line-height: ${theme.font.lineHeight[0]};
-                  background: ${theme.background};
-                  color: ${theme.foreground};
+                  font-weight: ${weight};
+                  line-height: ${lineHeight[0]};
+                  background: ${color.background};
+                  color: ${color.foreground};
                   font-family: 'Rubik', sans-serif;
                 }
 
@@ -74,43 +81,61 @@ const Page = ({ children }) => (
                 h2,
                 h3,
                 h4 {
-                  margin: ${theme.spacer(1.414)} 0 ${theme.spacer(0.5)};
-                  line-height: ${theme.font.lineHeight[1]};
+                  margin: ${spacer(1.414)} 0 ${spacer(0.5)};
+                  line-height: ${lineHeight[1]};
                 }
 
                 h1 {
                   margin-top: 0;
-                  font-size: ${theme.font.size(0)};
+                  font-size: ${size(0)};
                 }
 
                 h2 {
-                  font-size: ${theme.font.size(1)};
+                  font-size: ${size(1)};
                 }
 
                 h3 {
-                  font-size: ${theme.font.size(2)};
+                  font-size: ${size(2)};
                 }
 
                 h4 {
-                  font-size: ${theme.font.size(3)};
+                  font-size: ${size(3)};
                 }
 
                 small {
-                  font-size: ${theme.font.size(5)};
+                  font-size: ${size(5)};
                 }
 
                 a {
                   text-decoration: none;
-                  color: ${theme.primary};
+                  color: ${color.primary};
                 }
 
                 a:hover {
                   text-decoration: underline;
                 }
+
+                @media (min-width: ${breakpoints[2]}px) {
+                  h1 {
+                    font-size: ${size(0, { breakpoint: 2 })};
+                  }
+                  h2 {
+                    font-size: ${size(1, { breakpoint: 2 })};
+                  }
+                  h3 {
+                    font-size: ${size(2, { breakpoint: 2 })};
+                  }
+                  h4 {
+                    font-size: ${size(3, { breakpoint: 2 })};
+                  }
+                  small {
+                    font-size: ${size(5, { breakpoint: 2 })};
+                  }
+                }
               `}</style>
               <style>{`
                 .container {
-                  color: ${theme.foreground};
+                  color: ${color.foreground};
                 }
               `}</style>
             </>

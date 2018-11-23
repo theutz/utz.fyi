@@ -1,3 +1,5 @@
+import { pipe, map, range, get } from 'lodash/fp'
+
 const foreground = '#101935'
 const background = '#fefefe'
 
@@ -7,34 +9,47 @@ const success = '#069E2D'
 const warning = '#FFBA08'
 const danger = '#D81E5B'
 
-const sizes = [3.157, 2.369, 1.777, 1.333, 1, 0.75, 0.563, 0.422]
+const largeSizes = [3.157, 2.369, 1.777, 1.333, 1, 0.75, 0.563, 0.422]
+const smallSizes = [2.074, 1.728, 1.44, 1.2, 1, 0.833, 0.694, 0.579]
+const sizes = [smallSizes, smallSizes, largeSizes, largeSizes, largeSizes]
 
 const font = {
   weight: 400,
   lineHeight: [1.45, 1.2],
-  size: (size, multiplier = 1) => sizes[size] * multiplier + 'em',
+  size: (size, opts = {}) => {
+    const { breakpoint = 0, multiplier = 1 } = opts
+    return sizes[breakpoint][size] * multiplier + 'em'
+  },
 }
 
 const spacer = (multiplier = 1) => 1 * multiplier + 'em'
 
+const breakpoints = [0, 600, 960, 1280, 1920]
+
+const base = { breakpoints, font, spacer }
+
 const light = {
-  font,
-  spacer,
-  foreground,
-  background,
-  primary,
-  info,
-  success,
-  warning,
-  danger,
+  ...base,
+  color: {
+    foreground,
+    background,
+    primary,
+    info,
+    success,
+    warning,
+    danger,
+  },
 }
 
 const dark = {
-  ...light,
-  foreground: background,
-  background: foreground,
-  primary: info,
-  info: primary,
+  ...base,
+  color: {
+    ...light.color,
+    foreground: background,
+    background: foreground,
+    primary: info,
+    info: primary,
+  },
 }
 
 export default {
