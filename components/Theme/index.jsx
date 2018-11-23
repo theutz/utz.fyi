@@ -7,6 +7,8 @@ const ThemeContext = React.createContext({
 })
 
 export class Provider extends React.Component {
+  static displayName = 'ThemeProvider'
+
   constructor(props) {
     super(props)
 
@@ -32,5 +34,7 @@ export class Provider extends React.Component {
     )
   }
 }
+
+ThemeContext.Consumer.displayName = 'ThemeContext'
 
 export default ThemeContext.Consumer

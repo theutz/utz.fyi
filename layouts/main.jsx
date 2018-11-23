@@ -1,14 +1,12 @@
 import Head from 'next/head'
-import '../styles/normalize.css'
+
 import Theme, { Provider } from '../components/Theme'
 
-export default ({ children }) => (
-  <>
+import '../styles/normalize.css'
+
+const Page = ({ children }) => (
+  <React.Fragment>
     <Head>
-      <link
-        href="https://fonts.googleapis.com/css?family=Rubik:400,700"
-        rel="stylesheet"
-      />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
@@ -38,7 +36,16 @@ export default ({ children }) => (
       <meta name="msapplication-TileColor" content="#2b5797" />
       <meta name="msapplication-config" content="/static/browserconfig.xml" />
       <meta name="theme-color" content="#ffffff" />
-      <title>FYI: Michael Utz</title>
+      <meta
+        name="viewport"
+        content="initial-scale=1.0, width=device-width"
+        key="viewport"
+      />
+      <link
+        href="https://fonts.googleapis.com/css?family=Rubik:400,700"
+        rel="stylesheet"
+      />
+      <title>Michael Utz, FYI</title>
     </Head>
     <Provider>
       <Theme>
@@ -111,5 +118,9 @@ export default ({ children }) => (
         }}
       </Theme>
     </Provider>
-  </>
+  </React.Fragment>
 )
+
+Page.displayName = 'Page'
+
+export default Page
