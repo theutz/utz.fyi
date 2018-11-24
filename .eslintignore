@@ -3,3 +3,4 @@ node_modules
 .chrome
 .vscode
 *.json
+*.orig

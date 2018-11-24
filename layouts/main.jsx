@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import Media from 'react-media'
 
 import { text, schema, colors, space } from '../theme'
+import LocalStorage from '../helpers/LocalStorage'
 
 class Page extends Component {
   constructor(props) {
@@ -26,9 +27,17 @@ class Page extends Component {
 
   static displayName = 'Page'
 
+  componentDidMount() {
+    const storage = new LocalStorage()
+    this.setThemeMode(storage.themeName || 'dark')
+  }
+
   setThemeMode = (mode) => {
     schema.validators.isMode.validateSync(mode)
-    this.setState({ mode })
+    this.setState({ mode }, () => {
+      const storage = new LocalStorage()
+      storage.themeName = mode
+    })
   }
 
   toggleThemeMode = () => {

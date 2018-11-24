@@ -80,3 +80,6 @@ typings/
 
 # Chrome Debug Dir
 .chrome
+
+# Duplicates from version tool
+*.orig
