@@ -1,7 +1,9 @@
+import ThemeToggler from './ThemeToggler'
+
 const Footer = () => (
-  <div className="container">
-    <div className="right" />
-  </div>
+  <footer>
+    <ThemeToggler />
+  </footer>
 )
 
 export default Footer

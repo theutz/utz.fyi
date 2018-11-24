@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import Link from 'next/link'
 
 import { colors, space } from '../theme'
@@ -13,7 +13,9 @@ const Header = (props) => (
       <Logos as={LogoContainer} with={Logo} />
       <Title>
         <Link href="/">
-          <a>https://utz.fyi</a>
+          <a>
+            https://utz.fyi<Blinking>_</Blinking>
+          </a>
         </Link>
       </Title>
     </TitleBar>
@@ -30,6 +32,16 @@ const Header = (props) => (
     </MenuBar>
   </Container>
 )
+
+const blinking = keyframes`
+  to {
+    visibility: hidden;
+  }
+`
+
+const Blinking = styled.span`
+  animation: ${blinking} 1s steps(2, start) 10;
+`
 
 const LogoContainer = styled(BaseLogoContainer)`
   color: ${colors.background};
@@ -65,7 +77,7 @@ const Title = styled.div`
   font-weight: 700;
   text-transform: uppercase;
   color: ${colors.background};
-  letter-spacing: ${space(0.25)};
+  letter-spacing: ${space(0.1)};
 `
 
 const MenuBar = styled.menu`

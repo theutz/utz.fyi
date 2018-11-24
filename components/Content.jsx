@@ -4,7 +4,7 @@ import { space, colors } from '../theme'
 const Content = styled.div`
   max-width: 960px;
   margin: 0 auto;
-  margin-top: ${space(5)};
+  margin-top: ${space(7)};
   padding: 0 ${space(2)};
   color: ${colors.foreground};
 `

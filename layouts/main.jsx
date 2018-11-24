@@ -1,46 +1,38 @@
-import { Component } from 'react'
+import { ThemeProvider } from 'styled-components'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 
-import ThemeProvider from '../components/ThemeProvider'
+import ThemeContext from '../components/ThemeContext'
 import Meta from '../components/Meta'
 import GlobalStyle from '../components/GlobalStyle'
 
-class Page extends Component {
-  static displayName = 'Page'
-
-  static propTypes = {
-    children: PropTypes.func.isRequired,
-  }
-
-  render() {
-    return (
-      <ThemeProvider>
-        {({
-          mode: themeMode,
-          size: themeSize,
-          toggleMode: toggleThemeMode,
-          setMode: setThemeMode,
-        }) => {
+const Page = ({ children }) => {
+  return (
+    <ThemeContext.Provider>
+      <ThemeContext.Consumer>
+        {({ mode, size }) => {
           return (
-            <>
-              <GlobalStyle />
-              <Meta />
-              <Head>
-                <title>Michael Utz, FYI</title>
-              </Head>
-              {this.props.children({
-                themeMode,
-                themeSize,
-                toggleThemeMode,
-                setThemeMode,
-              })}
-            </>
+            <ThemeProvider theme={{ mode, size }}>
+              <>
+                <GlobalStyle />
+                <Meta />
+                <Head>
+                  <title>Michael Utz, FYI</title>
+                </Head>
+                {children}
+              </>
+            </ThemeProvider>
           )
         }}
-      </ThemeProvider>
-    )
-  }
+      </ThemeContext.Consumer>
+    </ThemeContext.Provider>
+  )
+}
+
+Page.displayName = 'Page'
+
+Page.propTypes = {
+  children: PropTypes.node,
 }
 
 export default Page

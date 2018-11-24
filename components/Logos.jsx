@@ -3,14 +3,14 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCoffee,
+  faSmile,
   faCode,
   faUndo,
-  faShippingFast,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { space } from '../theme'
 
-const logos = [faCode, faCoffee, faShippingFast, faUndo]
+const logos = [faCoffee, faCode, faSmile, faUndo]
 
 const Logos = ({ as: Outer, with: Inner, children, ...props }) => {
   return (

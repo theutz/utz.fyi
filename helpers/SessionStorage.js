@@ -15,6 +15,8 @@ class SessionStorage {
    * @returns {boolean}
    */
   get skipAnimation() {
+    if (!window || !global.window) return false
+
     const skipAnimation = sessionStorage.getItem(SKIP_ANIMATION_KEY) === 'true'
     return skipAnimation
   }
@@ -24,6 +26,8 @@ class SessionStorage {
    * @throws {ValidationError}
    */
   set skipAnimation(value) {
+    if (!window || !global.window) return
+
     yup.boolean().validateSync(value)
     sessionStorage.setItem(SKIP_ANIMATION_KEY, value)
   }

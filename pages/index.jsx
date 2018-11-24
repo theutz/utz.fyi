@@ -10,7 +10,6 @@ import Logos, {
   Logo as BaseLogo,
   Container as BaseLogoContainer,
 } from '../components/Logos'
-import ThemeToggler from '../components/ThemeToggler'
 
 class Index extends Component {
   constructor(props) {
@@ -34,40 +33,52 @@ class Index extends Component {
     return (
       skipAnimation !== null && (
         <Page>
-          {({ toggleThemeMode, themeMode }) => {
-            return (
-              <>
-                <Header animation={skipAnimation || fadeIn} />
-                <Container>
-                  <Logos
-                    as={LogoContainer}
-                    with={({ index, ...props }) => {
-                      return (
-                        <Logo
-                          {...props}
-                          delay={index + 1}
-                          animation={skipAnimation || fadeIn}
-                        />
-                      )
-                    }}
-                  />
-                  <Title animation={skipAnimation || fadeIn}>
-                    Michael Utz, FYI
-                  </Title>
-                </Container>
-                <Footer />
-                <ThemeToggler
-                  onClick={toggleThemeMode}
-                  isDark={themeMode === 'dark'}
-                />
-              </>
-            )
-          }}
+          <Header animation={skipAnimation || fadeIn} />
+          <Container>
+            <Hero>
+              <Logos
+                as={LogoContainer}
+                with={({ index, ...props }) => {
+                  return (
+                    <Logo
+                      {...props}
+                      delay={index + 1}
+                      animation={skipAnimation || fadeIn}
+                    />
+                  )
+                }}
+              />
+              <Title animation={skipAnimation || fadeIn}>Hello</Title>
+            </Hero>
+            <Content>
+              <Exposition>
+                <p>My name is Michael Utz.</p>
+                <p>I&apos;m a web developer that likes both people and code.</p>
+                <p>I&apos;d love to hear from you!</p>
+              </Exposition>
+            </Content>
+          </Container>
+          <Footer />
         </Page>
       )
     )
   }
 }
+
+const Hero = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+`
+
+const Exposition = styled.div`
+  color: ${colors.foreground};
+  margin-bottom: 30vh;
+  font-size: ${text.size(3)};
+`
 
 const getAnimationName = (props) => props.animation
 
@@ -83,7 +94,7 @@ const LogoContainer = styled(BaseLogoContainer)`
   width: 80vw;
   justify-content: space-around;
   font-size: ${text.size(0)};
-  margin-bottom: ${space(1)};
+  margin-bottom: ${space(0.5)};
 `
 
 const Logo = styled(BaseLogo)`
@@ -95,13 +106,13 @@ const Logo = styled(BaseLogo)`
   animation-name: ${getAnimationName};
 `
 
+const Content = styled.div`
+  max-width: 960px;
+  margin: 0 ${space(1)};
+`
+
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
 `
 
 const Title = styled.h1`
@@ -110,7 +121,7 @@ const Title = styled.h1`
   animation-delay: 5s;
   animation-duration: 1s;
   animation-timing-function: ease-in;
-  color: ${colors.primary};
+  color: ${colors.foreground};
   animation-name: ${getAnimationName};
 `
 
