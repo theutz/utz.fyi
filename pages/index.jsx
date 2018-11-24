@@ -1,3 +1,4 @@
+import { Component } from 'react'
 import styled, { keyframes } from 'styled-components'
 
 import SessionStorage from '../helpers/SessionStorage'
