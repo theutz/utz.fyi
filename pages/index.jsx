@@ -12,17 +12,6 @@ import Logos, {
 } from '../components/Logos'
 
 class Index extends Component {
-  get skipAnimation() {
-    return sessionStorage.getItem('skipAnimation') === 'true'
-  }
-
-  set skipAnimation(value) {
-    if (typeof value !== 'boolean')
-      throw new TypeError(`skipAnimation value must be a boolean`)
-
-    sessionStorage.setItem('skipAnimation', value)
-  }
-
   constructor(props) {
     super(props)
 
@@ -49,7 +38,13 @@ class Index extends Component {
             <Logos
               as={LogoContainer}
               with={({ index, ...props }) => {
-                return <Logo {...props} delay={index + 1} animation={fadeIn} />
+                return (
+                  <Logo
+                    {...props}
+                    delay={index + 1}
+                    animation={this.state.skipAnimation || fadeIn}
+                  />
+                )
               }}
             />
             <Title>Michael Utz, FYI</Title>

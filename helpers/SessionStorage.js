@@ -15,7 +15,8 @@ class SessionStorage {
    * @returns {boolean}
    */
   get skipAnimation() {
-    return sessionStorage.getItem(SKIP_ANIMATION_KEY) === 'true'
+    const skipAnimation = sessionStorage.getItem(SKIP_ANIMATION_KEY) === 'true'
+    return skipAnimation
   }
 
   /**
