@@ -20,7 +20,7 @@ class Page extends Component {
   }
 
   static propTypes = {
-    children: PropTypes.any,
+    children: PropTypes.func,
   }
 
   static displayName = 'Page'
@@ -46,6 +46,12 @@ class Page extends Component {
   render() {
     const { mode } = this.state
 
+    const renderProps = {
+      toggleThemeMode: this.toggleThemeMode,
+      setThemeMode: this.setThemeMode,
+      themeMode: mode,
+    }
+
     return (
       <Media query={{ minWidth: 600 }}>
         {(isNotSmall) => (
@@ -68,7 +74,7 @@ class Page extends Component {
                   <Head>
                     <title>Michael Utz, FYI</title>
                   </Head>
-                  {this.props.children}
+                  {this.props.children(renderProps)}
                 </>
               </ThemeProvider>
             )}

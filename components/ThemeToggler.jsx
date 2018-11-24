@@ -4,13 +4,15 @@ import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 import { colors } from '../theme'
 
-const Toggler = ({ onClick, isDark, ...props }) => (
-  <Container {...props}>
-    <Button onClick={onClick}>
-      <FontAwesomeIcon icon={isDark ? faMoon : faSun} />
-    </Button>
-  </Container>
-)
+const Toggler = ({ onClick, isDark, ...props }) => {
+  return (
+    <Container {...props}>
+      <Button onClick={onClick}>
+        <FontAwesomeIcon icon={isDark ? faSun : faMoon} />
+      </Button>
+    </Container>
+  )
+}
 
 const Button = styled.button`
   background: ${colors.foreground};

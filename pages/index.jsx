@@ -10,6 +10,7 @@ import Logos, {
   Logo as BaseLogo,
   Container as BaseLogoContainer,
 } from '../components/Logos'
+import ThemeToggler from '../components/ThemeToggler'
 
 class Index extends Component {
   constructor(props) {
@@ -33,23 +34,35 @@ class Index extends Component {
     return (
       skipAnimation !== null && (
         <Page>
-          <Header animation={skipAnimation || fadeIn} />
-          <Container>
-            <Logos
-              as={LogoContainer}
-              with={({ index, ...props }) => {
-                return (
-                  <Logo
-                    {...props}
-                    delay={index + 1}
-                    animation={skipAnimation || fadeIn}
+          {({ toggleThemeMode, themeMode }) => {
+            return (
+              <>
+                <Header animation={skipAnimation || fadeIn} />
+                <Container>
+                  <Logos
+                    as={LogoContainer}
+                    with={({ index, ...props }) => {
+                      return (
+                        <Logo
+                          {...props}
+                          delay={index + 1}
+                          animation={skipAnimation || fadeIn}
+                        />
+                      )
+                    }}
                   />
-                )
-              }}
-            />
-            <Title animation={skipAnimation || fadeIn}>Michael Utz, FYI</Title>
-          </Container>
-          <Footer />
+                  <Title animation={skipAnimation || fadeIn}>
+                    Michael Utz, FYI
+                  </Title>
+                </Container>
+                <Footer />
+                <ThemeToggler
+                  onClick={toggleThemeMode}
+                  isDark={themeMode === 'dark'}
+                />
+              </>
+            )
+          }}
         </Page>
       )
     )

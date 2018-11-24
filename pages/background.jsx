@@ -4,9 +4,15 @@ import Footer from '../components/Footer'
 
 const Background = () => (
   <Page>
-    <Header />
-    <h2>Background</h2>
-    <Footer />
+    {() => {
+      return (
+        <>
+          <Header />
+          <h2>Background</h2>
+          <Footer />
+        </>
+      )
+    }}
   </Page>
 )
 
