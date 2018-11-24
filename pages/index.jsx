@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components'
 import SessionStorage from '../helpers/SessionStorage'
 import { colors, space, text } from '../theme'
 import Page from '../layouts/main'
-import Header from '../components/Header'
+import BaseHeader from '../components/Header'
 import Footer from '../components/Footer'
 import Logos, {
   Logo as BaseLogo,
@@ -33,7 +33,7 @@ class Index extends Component {
     return (
       skipAnimation !== null && (
         <Page>
-          <Header />
+          <Header animation={skipAnimation || fadeIn} />
           <Container>
             <Logos
               as={LogoContainer}
@@ -42,12 +42,12 @@ class Index extends Component {
                   <Logo
                     {...props}
                     delay={index + 1}
-                    animation={this.state.skipAnimation || fadeIn}
+                    animation={skipAnimation || fadeIn}
                   />
                 )
               }}
             />
-            <Title>Michael Utz, FYI</Title>
+            <Title animation={skipAnimation || fadeIn}>Michael Utz, FYI</Title>
           </Container>
           <Footer />
         </Page>
@@ -55,6 +55,16 @@ class Index extends Component {
     )
   }
 }
+
+const getAnimationName = (props) => props.animation
+
+const Header = styled(BaseHeader)`
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: 5s;
+  animation-timing-function: ease-in-out;
+  animation-name: ${getAnimationName};
+`
 
 const LogoContainer = styled(BaseLogoContainer)`
   width: 80vw;
@@ -69,7 +79,7 @@ const Logo = styled(BaseLogo)`
   animation-duration: 1s;
   animation-fill-mode: both;
   animation-delay: ${({ delay }) => delay}s;
-  animation-name: ${({ animation }) => animation};
+  animation-name: ${getAnimationName};
 `
 
 const Container = styled.div`
@@ -88,6 +98,7 @@ const Title = styled.h1`
   animation-duration: 1s;
   animation-timing-function: ease-in;
   color: ${colors.primary};
+  animation-name: ${getAnimationName};
 `
 
 const fadeIn = keyframes`

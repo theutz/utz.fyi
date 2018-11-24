@@ -7,8 +7,8 @@ import Logos, {
   Logo as BaseLogo,
 } from '../components/Logos'
 
-const Header = () => (
-  <Container>
+const Header = (props) => (
+  <Container {...props}>
     <TitleBar>
       <Logos as={LogoContainer} with={Logo} />
       <Title>
