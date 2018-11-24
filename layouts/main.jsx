@@ -164,6 +164,7 @@ body {
   background: ${colors.background};
   color: ${colors.forground};
   line-height: ${text.lineHeight(0)};
+  transition: all 100ms ease-in-out;
 }
 
 p {
