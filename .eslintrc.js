@@ -17,6 +17,7 @@ module.exports = {
   rules: {
     strict: 0,
     'no-unused-vars': ['error', { ignoreRestSiblings: true }],
+    'react/react-in-jsx-scope': ['off'],
   },
   settings: {
     react: {

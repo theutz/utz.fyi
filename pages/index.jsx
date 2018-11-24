@@ -1,5 +1,4 @@
-import React from 'react'
-
+import { Component } from 'react'
 import styled, { keyframes } from 'styled-components'
 
 import SessionStorage from '../helpers/SessionStorage'
@@ -12,7 +11,7 @@ import Logos, {
   Container as BaseLogoContainer,
 } from '../components/Logos'
 
-class Index extends React.Component {
+class Index extends Component {
   get skipAnimation() {
     return sessionStorage.getItem('skipAnimation') === 'true'
   }

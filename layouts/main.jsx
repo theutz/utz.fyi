@@ -1,5 +1,6 @@
+import { Component } from 'react'
 import PropTypes from 'prop-types'
-import { ThemeProvider, createGlobalStyle } from 'styled-components/macro'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import Head from 'next/head'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
@@ -9,7 +10,7 @@ import Media from 'react-media'
 
 import { text, schema, colors, space } from '../theme'
 
-class Page extends React.Component {
+class Page extends Component {
   constructor(props) {
     super(props)
 
