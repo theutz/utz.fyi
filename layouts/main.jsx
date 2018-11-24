@@ -1,14 +1,11 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
-import { ThemeProvider, createGlobalStyle } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 import Head from 'next/head'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
-import { normalize } from 'polished'
-import styled from 'styled-components'
 import Media from 'react-media'
 
-import { text, schema, colors, space } from '../theme'
+import GlobalStyle from '../components/GlobalStyle'
+import { schema } from '../theme'
 import LocalStorage from '../helpers/LocalStorage'
 
 class Page extends Component {
@@ -110,16 +107,7 @@ class Page extends Component {
                     />
                     <title>Michael Utz, FYI</title>
                   </Head>
-                  <Container>
-                    {this.props.children}
-                    <ThemeTogglerContainer>
-                      <ThemeToggler onClick={this.toggleThemeMode}>
-                        <FontAwesomeIcon
-                          icon={mode === 'dark' ? faSun : faMoon}
-                        />
-                      </ThemeToggler>
-                    </ThemeTogglerContainer>
-                  </Container>
+                  {this.props.children}
                 </>
               </ThemeProvider>
             )}
@@ -129,85 +117,5 @@ class Page extends Component {
     )
   }
 }
-
-const Container = styled.div`
-  color: ${colors.forground};
-`
-
-const ThemeToggler = styled.button`
-  background: ${colors.foreground};
-  color: ${colors.background};
-  border-radius: 50%;
-  padding: 0.5em;
-  margin-bottom: 1em;
-`
-
-const ThemeTogglerContainer = styled.div`
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-`
-
-const GlobalStyle = createGlobalStyle`
-${normalize()};
-
-html {
-  font-size: ${text.size(4)};
-}
-
-body {
-  font-family: ${text.family};
-  font-weight: ${text.weight('normal')};
-  background: ${colors.background};
-  color: ${colors.forground};
-  line-height: ${text.lineHeight(0)};
-  transition: all 100ms ease-in-out;
-}
-
-p {
-  margin-bottom: 1.3em;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  margin: ${space(1.414)} 0 ${space(0.5)};
-  line-height: ${text.lineHeight(1)};
-}
-
-h1 {
-  margin-top: 0;
-  font-size: ${text.size(0)};
-}
-
-h2 {
-  font-size: ${text.size(1)};
-}
-
-h3 {
-  font-size: ${text.size(2)};
-}
-
-h4 {
-  font-size: ${text.size(3)};
-}
-
-small {
-  font-size: ${text.size(5)};
-}
-
-a {
-  text-decoration: none;
-  color: ${colors.primary};
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-`
 
 export default Page
