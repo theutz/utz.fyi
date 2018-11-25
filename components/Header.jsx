@@ -1,40 +1,50 @@
+import { useContext } from 'react'
 import styled, { keyframes } from 'styled-components'
 import Link from 'next/link'
 
 import { colors, space } from '../theme'
 import Logos from '../components/Logos'
+import ThemeContext from '../contexts/Theme'
 
-const Header = (props) => (
-  <Container {...props}>
-    <TitleBar>
-      <LogoContainer>
-        <Logos>
-          {({ icons }) =>
-            icons.map((icon, index) => <Logo key={index}>{icon}</Logo>)
-          }
-        </Logos>
-      </LogoContainer>
-      <Title>
-        <Link href="/">
-          <a>
-            https://utz.fyi<Blinking>_</Blinking>
-          </a>
-        </Link>
-      </Title>
-    </TitleBar>
-    <MenuBar>
-      {[['/', 'Home'], ['/background', 'Background']].map(
-        ([url, text], index) => (
-          <MenuItem key={index}>
-            <Link href={url}>
-              <a>{text}</a>
+const Header = (props) => {
+  const {
+    state: { mode },
+  } = useContext(ThemeContext.Context)
+
+  return (
+    mode && (
+      <Container {...props}>
+        <TitleBar>
+          <LogoContainer>
+            <Logos>
+              {({ icons }) =>
+                icons.map((icon, index) => <Logo key={index}>{icon}</Logo>)
+              }
+            </Logos>
+          </LogoContainer>
+          <Title>
+            <Link href="/">
+              <a>
+                https://utz.fyi<Blinking>_</Blinking>
+              </a>
             </Link>
-          </MenuItem>
-        )
-      )}
-    </MenuBar>
-  </Container>
-)
+          </Title>
+        </TitleBar>
+        <MenuBar>
+          {[['/', 'Home'], ['/background', 'Background']].map(
+            ([url, text], index) => (
+              <MenuItem key={index}>
+                <Link href={url}>
+                  <a>{text}</a>
+                </Link>
+              </MenuItem>
+            )
+          )}
+        </MenuBar>
+      </Container>
+    )
+  )
+}
 
 const blinking = keyframes`
   to {

@@ -6,13 +6,11 @@ import LocalStorage from '../helpers/LocalStorage'
 const storage = new LocalStorage()
 
 const initialState = {
-  toggleThemeMode: () => {},
-  setThemeMode: () => {},
   size: 'small',
-  mode: storage.themeName || 'dark',
+  mode: null,
 }
 
-const Context = createContext(initialState)
+const Context = createContext()
 
 function reducer(state, action) {
   const { type } = action
@@ -28,6 +26,10 @@ function reducer(state, action) {
       const mode = state.mode === 'dark' ? 'light' : 'dark'
       storage.themeName = mode
       return { ...state, mode }
+    }
+    case 'LOAD_FROM_LOCAL_STORAGE': {
+      const mode = storage.themeName
+      return { ...state, mode: mode }
     }
     case 'SMALL':
       return { ...state, size: 'small' }

@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 
+import ExecutionEnvironment from 'exenv'
 import { ThemeProvider } from 'styled-components'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
@@ -12,7 +13,12 @@ import GlobalStyle from '../components/GlobalStyle'
 const Page = ({ children }) => {
   const {
     state: { mode, size },
+    dispatch,
   } = useContext(ThemeContext.Context)
+
+  if (!mode && ExecutionEnvironment.canUseDOM) {
+    dispatch({ type: 'LOAD_FROM_LOCAL_STORAGE' })
+  }
 
   return (
     <ThemeProvider theme={{ mode, size }}>
