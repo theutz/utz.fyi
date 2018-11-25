@@ -2,7 +2,7 @@ import { ThemeProvider } from 'styled-components'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 
-import ThemeContext from '../components/ThemeContext'
+import ThemeContext from '../contexts/Theme'
 import Meta from '../components/Meta'
 import GlobalStyle from '../components/GlobalStyle'
 
@@ -10,7 +10,7 @@ const Page = ({ children }) => {
   return (
     <ThemeContext.Provider>
       <ThemeContext.Consumer>
-        {({ mode, size }) => {
+        {({ state: { mode, size } }) => {
           return (
             <ThemeProvider theme={{ mode, size }}>
               <>

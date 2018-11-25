@@ -1,23 +1,24 @@
+import { useContext } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 import useWindowScrollPosition from '../hooks/useWindowScrollPosition'
 import { colors, space } from '../theme'
-import ThemeContext from './ThemeContext'
+import ThemeContext from '../contexts/Theme'
 
 const Toggler = (props) => {
   const { y } = useWindowScrollPosition()
+  const {
+    state: { mode },
+    dispatch,
+  } = useContext(ThemeContext.Context)
 
   return (
     <Container {...props}>
-      <ThemeContext.Consumer>
-        {({ toggleMode, mode }) => (
-          <Button onClick={toggleMode} scrollY={y}>
-            <FontAwesomeIcon icon={mode === 'dark' ? faSun : faMoon} />
-          </Button>
-        )}
-      </ThemeContext.Consumer>
+      <Button onClick={() => dispatch({ type: 'TOGGLE' })} scrollY={y}>
+        <FontAwesomeIcon icon={mode === 'dark' ? faSun : faMoon} />
+      </Button>
     </Container>
   )
 }
@@ -38,7 +39,6 @@ const Button = styled.button`
 
 const Container = styled.div`
   position: fixed;
-  /* top: 0; */
   bottom: ${space(4)};
   right: 0;
   left: 0;
