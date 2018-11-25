@@ -1,8 +1,10 @@
 import { useContext } from 'react'
+
 import { ThemeProvider } from 'styled-components'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 
+import WindowSizeSpy from '../components/WindowSizeSpy'
 import ThemeContext from '../contexts/Theme'
 import Meta from '../components/Meta'
 import GlobalStyle from '../components/GlobalStyle'
@@ -15,6 +17,7 @@ const Page = ({ children }) => {
   return (
     <ThemeProvider theme={{ mode, size }}>
       <>
+        <WindowSizeSpy />
         <GlobalStyle />
         <Meta />
         <Head>
