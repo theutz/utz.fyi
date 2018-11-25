@@ -7,7 +7,7 @@ const DEFAULT_THEME = 'dark'
 
 class LocalStorage {
   get themeName() {
-    if (!root.localStorage) return DEFAULT_THEME
+    if (!root.localStorage) return null
     const theme = root.localStorage.getItem(THEME_KEY)
     if (!validators.isMode.isValidSync(theme)) return DEFAULT_THEME
     return theme
