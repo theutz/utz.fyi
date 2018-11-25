@@ -7,6 +7,7 @@
       "src": "next.config.js",
       "use": "@now/next",
       "config": { "maxLambdaSize": "10mb" }
-    }
+    },
+    { "src": "static/*", "use": "@now/static" }
   ]
 }
