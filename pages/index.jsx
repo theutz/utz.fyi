@@ -6,10 +6,7 @@ import { colors, space, text } from '../theme'
 import Page from '../layouts/main'
 import BaseHeader from '../components/Header'
 import Footer from '../components/Footer'
-import Logos, {
-  Logo as BaseLogo,
-  Container as BaseLogoContainer,
-} from '../components/Logos'
+import Logos from '../components/Logos'
 
 class Index extends Component {
   constructor(props) {
@@ -36,18 +33,21 @@ class Index extends Component {
           <Header animation={skipAnimation || fadeIn} />
           <Container>
             <Hero>
-              <Logos
-                as={LogoContainer}
-                with={({ index, ...props }) => {
-                  return (
-                    <Logo
-                      {...props}
-                      delay={index + 1}
-                      animation={skipAnimation || fadeIn}
-                    />
-                  )
-                }}
-              />
+              <LogoContainer>
+                <Logos>
+                  {({ icons }) =>
+                    icons.map((icon, index) => (
+                      <Logo
+                        key={index}
+                        delay={index + 1}
+                        animation={skipAnimation || fadeIn}
+                      >
+                        {icon}
+                      </Logo>
+                    ))
+                  }
+                </Logos>
+              </LogoContainer>
               <Title animation={skipAnimation || fadeIn}>Hello</Title>
             </Hero>
             <Content>
@@ -90,14 +90,15 @@ const Header = styled(BaseHeader)`
   animation-name: ${getAnimationName};
 `
 
-const LogoContainer = styled(BaseLogoContainer)`
+const LogoContainer = styled.div`
   width: 80vw;
   justify-content: space-around;
   font-size: ${text.size(0)};
   margin-bottom: ${space(0.5)};
+  display: flex;
 `
 
-const Logo = styled(BaseLogo)`
+const Logo = styled.div`
   color: ${colors.foreground};
   animation-timing-function: ease-in-out;
   animation-duration: 1s;

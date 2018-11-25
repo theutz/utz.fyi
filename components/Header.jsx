@@ -2,15 +2,18 @@ import styled, { keyframes } from 'styled-components'
 import Link from 'next/link'
 
 import { colors, space } from '../theme'
-import Logos, {
-  Container as BaseLogoContainer,
-  Logo as BaseLogo,
-} from '../components/Logos'
+import Logos from '../components/Logos'
 
 const Header = (props) => (
   <Container {...props}>
     <TitleBar>
-      <Logos as={LogoContainer} with={Logo} />
+      <LogoContainer>
+        <Logos>
+          {({ icons }) =>
+            icons.map((icon, index) => <Logo key={index}>{icon}</Logo>)
+          }
+        </Logos>
+      </LogoContainer>
       <Title>
         <Link href="/">
           <a>
@@ -43,11 +46,12 @@ const Blinking = styled.span`
   animation: ${blinking} 1s steps(2, start) 10;
 `
 
-const LogoContainer = styled(BaseLogoContainer)`
+const LogoContainer = styled.div`
   color: ${colors.background};
+  display: flex;
 `
 
-const Logo = styled(BaseLogo)`
+const Logo = styled.div`
   margin-right: ${space(0.75)};
 `
 
