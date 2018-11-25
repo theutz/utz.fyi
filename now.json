@@ -8,5 +8,11 @@
       "use": "@now/next",
       "config": { "maxLambdaSize": "10mb" }
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "pages/index.js"
+    }
   ]
 }
