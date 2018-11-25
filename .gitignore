@@ -83,3 +83,6 @@ typings/
 
 # Duplicates from version tool
 *.orig
+
+# Next Export Dir
+dist

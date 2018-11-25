@@ -1,32 +1,25 @@
 import React from 'react'
+import root from 'window-or-global'
 import throttle from '../helpers/throttle'
 
 const useWindowScrollPosition = ({ throttleMs = 100 } = {}) => {
-  let window = window ||
-    global.window || {
-      pageXOffset: 0,
-      pageYOffset: 0,
-      addEventListener: () => {},
-      removeEventListener: () => {},
-    }
-
   const [scroll, setScroll] = React.useState({
-    x: window.pageXOffset,
-    y: window.pageYOffset,
+    x: root.pageXOffset || 0,
+    y: root.pageYOffset || 0,
   })
 
   const handle = throttle(() => {
     setScroll({
-      x: window.pageXOffset,
-      y: window.pageYOffset,
+      x: root.pageXOffset || 0,
+      y: root.pageYOffset || 0,
     })
   }, throttleMs)
 
   React.useEffect(() => {
-    window.addEventListener('scroll', handle)
+    root.addEventListener('scroll', handle)
 
     return () => {
-      window.removeEventListener('scroll', handle)
+      root.removeEventListener('scroll', handle)
     }
   }, [])
 

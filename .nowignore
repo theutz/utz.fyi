@@ -1,8 +1,17 @@
 node_modules/
+
+dist
+
 .chrome
+
 .vscode
+
 .next
+
 .eslintrc
+
 README.md
+
 .prettierrc
+
 .huskyrc.js
