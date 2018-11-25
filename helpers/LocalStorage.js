@@ -1,21 +1,22 @@
+import root from 'window-or-global'
+
 import { validators } from '../theme/schema'
 
 const THEME_KEY = 'themeName'
+const DEFAULT_THEME = 'dark'
 
 class LocalStorage {
   get themeName() {
-    const defaultTheme = 'dark'
-    if (!window || !global.window) return defaultTheme
-    const theme = localStorage.getItem(THEME_KEY)
-    if (!validators.isMode.isValidSync(theme)) return defaultTheme
+    if (!root.localStorage) return DEFAULT_THEME
+    const theme = root.localStorage.getItem(THEME_KEY)
+    if (!validators.isMode.isValidSync(theme)) return DEFAULT_THEME
     return theme
   }
 
   set themeName(name) {
-    if (!window || !global.window) return
-
+    if (!root.localStorage) return
     validators.isMode.validateSync(name)
-    localStorage.setItem(THEME_KEY, name)
+    root.localStorage.setItem(THEME_KEY, name)
   }
 }
 

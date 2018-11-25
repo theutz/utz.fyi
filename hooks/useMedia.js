@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
+import root from 'window-or-global'
 import json2mq from 'json2mq'
 
 function useMedia(query, defaultMatches = true) {
-  if (!window || global.window) return null
   const [matches, setMatches] = useState(defaultMatches)
 
   useEffect(
     () => {
-      const mediaQueryList = window.matchMedia(
+      const mediaQueryList = root.matchMedia(
         typeof query === 'string' ? query : json2mq(query)
       )
       let active = true
