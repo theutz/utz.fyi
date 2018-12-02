@@ -8,7 +8,7 @@ const Background = () => {
     <Page>
       <Header />
       <Content>
-        <h2>Background</h2>
+        <h2>History</h2>
         <p>
           I&apos;ve been working on the web since before CSS3 was a thing—mostly
           as a hobby or for local non-profits.

@@ -1,6 +1,12 @@
 import { useContext } from 'react'
 import styled, { keyframes } from 'styled-components'
 import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faHistory,
+  faHome,
+  faPuzzlePiece,
+} from '@fortawesome/free-solid-svg-icons'
 
 import { colors, space } from '../theme'
 import Logos from '../components/Logos'
@@ -31,20 +37,31 @@ const Header = (props) => {
           </Title>
         </TitleBar>
         <MenuBar>
-          {[['/', 'Home'], ['/background', 'Background']].map(
-            ([url, text], index) => (
-              <MenuItem key={index}>
-                <Link href={url}>
-                  <a>{text}</a>
-                </Link>
-              </MenuItem>
-            )
-          )}
+          {[
+            ['/', 'Home', faHome],
+            ['/history', 'History', faHistory],
+            ['/features', 'Features', faPuzzlePiece],
+          ].map(([url, text, icon], index) => (
+            <MenuItem key={index}>
+              <Link href={url}>
+                <a>
+                  <Icon>
+                    <FontAwesomeIcon icon={icon} />
+                  </Icon>
+                  {text}
+                </a>
+              </Link>
+            </MenuItem>
+          ))}
         </MenuBar>
       </Container>
     )
   )
 }
+
+const Icon = styled.span`
+  margin-right: ${space(0.5)};
+`
 
 const blinking = keyframes`
   to {
@@ -75,7 +92,7 @@ const Container = styled.header`
 `
 
 const TitleBar = styled.div`
-  margin: 0.5em;
+  margin: 0;
   padding: 0.25em 0.5em;
   display: flex;
   justify-content: space-between;
@@ -96,9 +113,10 @@ const Title = styled.div`
 
 const MenuBar = styled.menu`
   margin: 0;
-  padding: 0 ${space(1)};
+  padding: ${space(1)};
   display: flex;
   justify-content: flex-start;
+  background: ${colors.background};
 `
 
 const MenuItem = styled.div`
