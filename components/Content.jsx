@@ -8,7 +8,7 @@ const Content = ({ children }) => (
 )
 
 const Inner = styled.div`
-  margin-top: ${space(9)};
+  margin-top: ${space(4)};
 `
 
 const Outer = styled.div`

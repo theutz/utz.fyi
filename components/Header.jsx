@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,6 +8,7 @@ import {
   faPuzzlePiece,
   faInfoCircle,
   faBookmark,
+  faTimes,
   faStar,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -20,10 +21,13 @@ const Header = (props) => {
     state: { mode },
   } = useContext(ThemeContext.Context)
 
+  const [menuIsVisible, setMenuIsVisible] = useState(false)
+  const toggleMenuIsVisible = () => setMenuIsVisible(!menuIsVisible)
+
   return (
     mode && (
       <Container {...props}>
-        <TitleBar>
+        <TitleBar onClick={toggleMenuIsVisible}>
           <LogoContainer>
             <Logos>
               {({ icons }) =>
@@ -32,14 +36,10 @@ const Header = (props) => {
             </Logos>
           </LogoContainer>
           <Title>
-            <Link href="/">
-              <a>
-                https://utz.fyi<Blinking>_</Blinking>
-              </a>
-            </Link>
+            https://utz.fyi<Blinking>_</Blinking>
           </Title>
         </TitleBar>
-        <MenuBar>
+        <MenuBar isVisible={menuIsVisible}>
           {[
             ['/', 'Home', faHome],
             ['/info', 'Info', faInfoCircle],
@@ -59,6 +59,12 @@ const Header = (props) => {
               </Link>
             </MenuItem>
           ))}
+          <MenuItem onClick={() => setMenuIsVisible(false)}>
+            <Icon>
+              <FontAwesomeIcon icon={faTimes} />
+            </Icon>
+            Close
+          </MenuItem>
         </MenuBar>
       </Container>
     )
@@ -124,6 +130,9 @@ const MenuBar = styled.menu`
   justify-content: flex-start;
   flex-flow: row wrap;
   background: ${colors.background};
+  opacity: ${(props) => (props.isVisible ? 1 : 0)};
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+  visibility: ${(props) => (props.isVisible ? 'visible' : 'hidden')};
 `
 
 const MenuItem = styled.div`
