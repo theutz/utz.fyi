@@ -6,6 +6,9 @@ import {
   faHistory,
   faHome,
   faPuzzlePiece,
+  faInfoCircle,
+  faBookmark,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { colors, space } from '../theme'
@@ -39,8 +42,11 @@ const Header = (props) => {
         <MenuBar>
           {[
             ['/', 'Home', faHome],
+            ['/info', 'Info', faInfoCircle],
+            ['/features', 'Features', faStar],
+            ['/skills', 'Skills', faPuzzlePiece],
+            ['/education', 'Education', faBookmark],
             ['/history', 'History', faHistory],
-            ['/features', 'Features', faPuzzlePiece],
           ].map(([url, text, icon], index) => (
             <MenuItem key={index}>
               <Link href={url}>
@@ -116,6 +122,7 @@ const MenuBar = styled.menu`
   padding: ${space(1)};
   display: flex;
   justify-content: flex-start;
+  flex-flow: row wrap;
   background: ${colors.background};
 `
 

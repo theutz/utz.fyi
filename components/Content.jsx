@@ -1,10 +1,19 @@
 import styled from 'styled-components'
 import { space, colors } from '../theme'
 
-const Content = styled.div`
+const Content = ({ children }) => (
+  <Outer>
+    <Inner>{children}</Inner>
+  </Outer>
+)
+
+const Inner = styled.div`
+  margin-top: ${space(9)};
+`
+
+const Outer = styled.div`
   max-width: 960px;
   margin: 0 auto;
-  margin-top: ${space(7)};
   padding: 0 ${space(2)};
   color: ${colors.foreground};
 `

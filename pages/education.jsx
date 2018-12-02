@@ -3,14 +3,14 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Content from '../components/Content'
 
-const HistoryPage = () => (
+const EducationPage = () => (
   <Page>
     <Header />
     <Content>
-      <h2>History</h2>
+      <h2>Education</h2>
     </Content>
     <Footer />
   </Page>
 )
 
-export default HistoryPage
+export default EducationPage
