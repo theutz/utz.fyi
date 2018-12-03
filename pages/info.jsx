@@ -14,9 +14,10 @@ const HistoryPage = () => {
           as a hobby or for local non-profits.
         </p>
         <p>
-          In 2007, I graduated from Northwest University with a Bachelor of Arts
-          in Music focusing on music technology. My passion for technology and
-          creativity lead me to learn more about the web.
+          In 2007, I graduated from{' '}
+          <a href="https://www.northwestu.edu/">Northwest University</a> with a
+          Bachelor of Arts in Music focusing on music technology. My passion for
+          technology and creativity lead me to learn more about the web.
         </p>
         <p>
           Since then, I&apos;ve had a chance to work with some wonderful teams
