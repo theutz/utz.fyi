@@ -9,10 +9,11 @@ import {
   faInfoCircle,
   faBookmark,
   faTimes,
+  faBars,
   faStar,
 } from '@fortawesome/free-solid-svg-icons'
 
-import { colors, space } from '../theme'
+import { colors, space, text } from '../theme'
 import Logos from '../components/Logos'
 import ThemeContext from '../contexts/Theme'
 
@@ -28,13 +29,9 @@ const Header = (props) => {
     mode && (
       <Container {...props}>
         <TitleBar onClick={toggleMenuIsVisible}>
-          <LogoContainer>
-            <Logos>
-              {({ icons }) =>
-                icons.map((icon, index) => <Logo key={index}>{icon}</Logo>)
-              }
-            </Logos>
-          </LogoContainer>
+          <Logo>
+            <FontAwesomeIcon icon={faBars} />
+          </Logo>
           <Title>
             https://utz.fyi<Blinking>_</Blinking>
           </Title>
@@ -52,7 +49,7 @@ const Header = (props) => {
               <Link href={url}>
                 <a>
                   <Icon>
-                    <FontAwesomeIcon icon={icon} />
+                    <FontAwesomeIcon icon={icon} fixedWidth />
                   </Icon>
                   {text}
                 </a>
@@ -61,7 +58,7 @@ const Header = (props) => {
           ))}
           <MenuItem onClick={() => setMenuIsVisible(false)}>
             <Icon>
-              <FontAwesomeIcon icon={faTimes} />
+              <FontAwesomeIcon icon={faTimes} fixedWidth />
             </Icon>
             Close
           </MenuItem>
@@ -83,11 +80,6 @@ const blinking = keyframes`
 
 const Blinking = styled.span`
   animation: ${blinking} 1s steps(2, start) 10;
-`
-
-const LogoContainer = styled.div`
-  color: ${colors.background};
-  display: flex;
 `
 
 const Logo = styled.div`
@@ -124,28 +116,42 @@ const Title = styled.div`
 `
 
 const MenuBar = styled.menu`
-  margin: 0;
-  padding: ${space(1)};
-  display: flex;
-  justify-content: flex-start;
-  flex-flow: row wrap;
-  background: ${colors.background};
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-items: start;
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-top: ${space(0.5)};
+  background: ${colors.foreground};
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   transition: visibility 0s, opacity 0.3s ease-in-out;
   visibility: ${(props) => (props.isVisible ? 'visible' : 'hidden')};
+
+  @media screen and (min-width: 400px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: 500px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (min-width: 700px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (min-width: 1000px) {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 `
 
 const MenuItem = styled.div`
-  margin-right: ${space(2)};
-
-  &:last-child {
-    margin-right: 0;
-  }
+  padding: ${space(0.25)} ${space(0.5)};
+  font-size: ${text.size(3)};
 
   &,
   & a {
-    text-align: center;
-    color: ${colors.info};
+    color: ${colors.background};
   }
 `
 

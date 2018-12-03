@@ -51,13 +51,9 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${text.size(5)};
   }
 
-  a {
+  a, a:hover {
     text-decoration: none;
     color: ${colors.primary};
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 `
 
