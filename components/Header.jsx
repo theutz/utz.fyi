@@ -14,7 +14,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 import { colors, space, text } from '../theme'
-import Logos from '../components/Logos'
 import ThemeContext from '../contexts/Theme'
 
 const Header = (props) => {
@@ -30,7 +29,7 @@ const Header = (props) => {
       <Container {...props}>
         <TitleBar onClick={toggleMenuIsVisible}>
           <Logo>
-            <FontAwesomeIcon icon={faBars} />
+            <FontAwesomeIcon icon={faBars} fixedWidth />
           </Logo>
           <Title>
             https://utz.fyi<Blinking>_</Blinking>
@@ -82,7 +81,10 @@ const Blinking = styled.span`
   animation: ${blinking} 1s steps(2, start) 10;
 `
 
-const Logo = styled.div`
+const Logo = styled.button`
+  border: 0;
+  color: ${colors.background};
+  background-color: ${colors.foreground};
   margin-right: ${space(0.75)};
 `
 
@@ -122,8 +124,8 @@ const MenuBar = styled.menu`
   padding-inline-start: 0;
   margin-block-start: 0;
   margin-block-end: 0;
-  padding-top: ${space(0.5)};
   background: ${colors.foreground};
+  padding-top: ${space(0.5)};
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   transition: visibility 0s, opacity 0.3s ease-in-out;
   visibility: ${(props) => (props.isVisible ? 'visible' : 'hidden')};
@@ -141,7 +143,8 @@ const MenuBar = styled.menu`
   }
 
   @media screen and (min-width: 1000px) {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    justify-content: space-evenly;
   }
 `
 
@@ -151,7 +154,15 @@ const MenuItem = styled.div`
 
   &,
   & a {
+    transition: color, background-color 0.3s ease;
+    background: ${colors.foreground};
     color: ${colors.background};
+  }
+
+  &:hover,
+  &:hover a {
+    color: ${colors.foreground};
+    background: ${colors.background};
   }
 `
 
