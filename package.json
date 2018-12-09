@@ -1,0 +1,19 @@
+{
+  "name": "utz.fyi",
+  "version": "0.0.0",
+  "description": "My personal website",
+  "main": "src/pages/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theutz/utz.fyi.git"
+  },
+  "author": "Michael Utz <michael@theutz.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theutz/utz.fyi/issues"
+  },
+  "homepage": "https://github.com/theutz/utz.fyi#readme"
+}
