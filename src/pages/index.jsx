@@ -1,5 +1,6 @@
-import React from "react";
+import React from 'react'
+import Layout from '../components/Layout'
 
-const Page = () => <div>Hello!</div>;
+const Page = () => <Layout>Hello!</Layout>
 
-export default Page;
+export default Page
