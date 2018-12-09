@@ -21,20 +21,28 @@
   },
   "homepage": "https://github.com/theutz/utz.fyi#readme",
   "dependencies": {
+    "babel-plugin-styled-components": "^1.9.2",
     "gatsby": "^2.0.64",
     "gatsby-plugin-react-helmet": "^3.0.4",
+    "gatsby-plugin-styled-components": "^3.0.4",
     "gatsby-source-filesystem": "^2.0.11",
     "lodash": "^4.17.11",
+    "polished": "^2.3.1",
     "prop-types": "^15.6.2",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "styled-components": "^4.1.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.2.1",
     "@commitlint/config-conventional": "^7.1.2",
     "husky": "^1.2.0",
     "prettier": "^1.15.3",
-    "pretty-quick": "^1.8.0"
+    "pretty-quick": "^1.8.0",
+    "stylelint": "^9.9.0",
+    "stylelint-config-recommended": "^2.1.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.5.1"
   }
 }

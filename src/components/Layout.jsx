@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
+import { ThemeProvider } from 'styled-components'
 
+import GlobalStyles from './GlobalStyles'
 import { getTitle } from '../selectors'
 
 function Layout({ children }) {
@@ -18,12 +20,15 @@ function Layout({ children }) {
         }
       `}
       render={data => (
-        <>
-          <Helmet title={getTitle(data)}>
-            <html lang="en" />
-          </Helmet>
-          {children}
-        </>
+        <ThemeProvider theme={{}}>
+          <>
+            <Helmet title={getTitle(data)}>
+              <html lang="en" />
+            </Helmet>
+            <GlobalStyles />
+            {children}
+          </>
+        </ThemeProvider>
       )}
     />
   )
