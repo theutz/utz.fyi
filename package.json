@@ -4,6 +4,10 @@
   "description": "My personal website",
   "main": "src/pages/index.js",
   "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/theutz/utz.fyi/issues"
   },
-  "homepage": "https://github.com/theutz/utz.fyi#readme"
+  "homepage": "https://github.com/theutz/utz.fyi#readme",
+  "dependencies": {
+    "gatsby": "^2.0.64",
+    "gatsby-plugin-react-helmet": "^3.0.4",
+    "gatsby-source-filesystem": "^2.0.11",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2",
+    "react-helmet": "^5.2.0"
+  }
 }
